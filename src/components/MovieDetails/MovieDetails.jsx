@@ -7,9 +7,9 @@ import { Info, StyledLink } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState([]);
-  const { movieId } = useParams();
+  const movieId = useParams();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = location.state ?? '/';
 
   useEffect(() => {
     try {
@@ -27,7 +27,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <BackToLink to={backLinkHref}>Back to Home</BackToLink>
+      <BackToLink to={backLinkHref}>Back to movies</BackToLink>
       <Box display="flex" bg="#808080">
         <img
           src={`https://image.tmdb.org/t/p/w400${poster_path}`}

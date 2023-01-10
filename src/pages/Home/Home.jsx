@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import {useLocation } from 'react-router-dom';
 import * as API from 'path/to/services/api';
+import { MoviesList, Name, StyledLink, Item } from './Home.styled';
 
 const Home = () => {
   const [trendMovies, setTrendMovies] = useState([]);
@@ -19,17 +20,21 @@ const Home = () => {
   }, []);
 
   return (
-    <ul>
-      {trendMovies.map(({ id, title }) => {
+    <MoviesList>
+      {trendMovies.map(({ id, title, poster_path }) => {
         return (
-          <li key={id}>
-            <NavLink to={`/movies/${id}`} state={location}>
-              {title}
-            </NavLink>
-          </li>
+          <Item key={id}>
+            <StyledLink to={`/movies/${id}`} state={location}>
+              <img
+                src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+                alt={title}
+              />
+            </StyledLink>
+            <Name>{title}</Name>
+          </Item>
         );
       })}
-    </ul>
+    </MoviesList>
   );
 };
 

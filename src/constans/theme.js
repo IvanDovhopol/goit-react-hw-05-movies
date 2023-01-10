@@ -6,7 +6,7 @@ export const theme = {
     background: '#fff',
     primary: '#808080',
     secondary: '#696969',
-    accent: '#a9a9a9',
+    accent: 'orangered',
     muted: '#f6f6f6',
     error: '#dc143c',
     table: '#d8e6f3',

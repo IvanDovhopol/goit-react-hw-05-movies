@@ -17,14 +17,10 @@ export const StyledLink = styled(NavLink)`
   box-shadow: 5px 5px 5px black;
 
   &:hover {
-    color: ${p => p.theme.colors.accent};
+    color: orangered;
   }
 
   &.active {
-    color: ${p => p.theme.colors.accent};
+    color: orangered;
   }
-`;
-
-export const Info = styled.div`
-  padding: 60px;
 `;
