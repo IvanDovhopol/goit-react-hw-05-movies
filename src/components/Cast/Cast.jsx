@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import * as API from 'path/to/services/api';
-import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Actors } from './Cast.styled';
 import defaultImg from 'path/to/placeholder-photo.jpg';
-import { useParams } from 'react-router-dom';
 
 const Cast = () => {
   const [actors, setActors] = useState([]);
@@ -45,3 +45,15 @@ const Cast = () => {
 };
 
 export default Cast;
+
+Cast.propTypes = {
+  actors: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      cast_id: PropTypes.string.isRequired,
+      profile_path: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      character: PropTypes.string.isRequired,
+    })
+  ),
+};

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import * as API from 'path/to/services/api';
+import toast, { Toaster } from 'react-hot-toast';
+import PropTypes from 'prop-types';
 import {
   SearchField,
   Form,
@@ -25,6 +27,7 @@ const Movies = () => {
         if (!query) return;
 
         const { results } = await API.getMoviesByKeyword(query);
+        if (results.length === 0) return console.log('asfasf');
         setMovies(results);
       }
       fetch();
@@ -37,6 +40,9 @@ const Movies = () => {
     e.preventDefault();
 
     const query = e.currentTarget.elements.search.value.toLowerCase();
+    if (query.trim() === '')
+      return toast.error('This field must not be empty!');
+
     setSearchQuery({ query });
 
     e.target.reset();
@@ -60,6 +66,8 @@ const Movies = () => {
         </Form>
       </SearchField>
 
+      <Toaster position="top-center" reverseOrder={false} />
+
       <MoviesList>
         {movies.map(({ id, poster_path, title }) => {
           return (
@@ -80,3 +88,13 @@ const Movies = () => {
 };
 
 export default Movies;
+
+Movies.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
+};

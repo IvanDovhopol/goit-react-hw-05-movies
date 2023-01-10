@@ -1,6 +1,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import * as API from 'path/to/services/api';
+import PropTypes from 'prop-types';
 import { BackToLink } from 'components/BackToLink';
 import { Box } from 'components/Box';
 import { Info, StyledLink } from './MovieDetails.styled';
@@ -60,3 +61,12 @@ const MovieDetails = () => {
 };
 
 export default MovieDetails;
+
+MovieDetails.propTypes = {
+  genres: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ),
+};

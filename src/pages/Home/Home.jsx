@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import {useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import * as API from 'path/to/services/api';
+import PropTypes from 'prop-types';
 import { MoviesList, Name, StyledLink, Item } from './Home.styled';
 
 const Home = () => {
@@ -39,3 +40,13 @@ const Home = () => {
 };
 
 export default Home;
+
+Home.propTypes = {
+  trendMovies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
+};
